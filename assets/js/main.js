@@ -766,7 +766,7 @@
       ok.querySelector("[data-s-total]").textContent = eur(q.total) + (state.linen ? " (Wäschepaket nach Angebot)" : "");
       if (!PRESENT) {
         var fv = function (n) { var el = form.querySelector("[name=" + n + "]"); return el ? el.value.trim() : ""; };
-        var addr = [fv("strasse"), (fv("plz") + " " + fv("ort")).trim(), fv("land")].filter(Boolean).join(", ");
+        var addr = fv("strasse") || fv("ort") ? [fv("strasse"), (fv("plz") + " " + fv("ort")).trim(), fv("land")].filter(Boolean).join(", ") : "";
         openMail("Buchungsanfrage Ferienwohnung Meerblick: " + fmtNoYear(state.a) + " – " + fmtNoYear(state.b) + state.b.getFullYear(),
           "Hallo Petra und Mirko,\n\nich möchte die Ferienwohnung Meerblick anfragen:\n\n" +
           "Anreise: " + fmtDow(state.a) + state.a.getFullYear() + "\n" +
